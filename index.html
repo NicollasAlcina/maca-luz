@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Maçã com Cabinho, Folha e Efeito de Luz e Sombra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+    <script>
+        function draw() {
+            var canvas = document.getElementById('meuCanvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                // Desenho da maçã com cabinho, folha e efeito de luz e sombra
+                // Base da maçã
+                ctx.beginPath();
+                ctx.fillStyle = "#FF0000"; // Vermelho
+                ctx.arc(150, 150, 100, 0, Math.PI * 2, true); // Círculo exterior
+                ctx.fill();
+                ctx.closePath();
+
+                // Luz na maçã
+                ctx.beginPath();
+                var gradient = ctx.createRadialGradient(150, 150, 80, 150, 150, 120);
+                gradient.addColorStop(0, "rgba(255, 255, 255, 0.8)"); // Luz central
+                gradient.addColorStop(1, "rgba(255, 255, 255, 0)"); // Transparência
+                ctx.fillStyle = gradient;
+                ctx.arc(150, 150, 120, 0, Math.PI * 2, true); // Círculo exterior
+                ctx.fill();
+                ctx.closePath();
+
+                // Sombra na maçã
+                ctx.beginPath();
+                var gradientShadow = ctx.createRadialGradient(150, 150, 100, 150, 150, 140);
+                gradientShadow.addColorStop(0, "rgba(0, 0, 0, 0.4)"); // Sombra central
+                gradientShadow.addColorStop(1, "rgba(0, 0, 0, 0)"); // Transparência
+                ctx.fillStyle = gradientShadow;
+                ctx.arc(150, 150, 140, 0, Math.PI * 2, true); // Círculo exterior
+                ctx.fill();
+                ctx.closePath();
+
+                // Cabinho
+                ctx.beginPath();
+                ctx.strokeStyle = "#663300"; // Marrom escuro
+                ctx.lineWidth = 6;
+                ctx.moveTo(130, 80);
+                ctx.lineTo(100, 120);
+                ctx.stroke();
+                ctx.closePath();
+
+                // Folha
+                ctx.beginPath();
+                ctx.fillStyle = "#339933"; // Verde
+                ctx.moveTo(110, 90);
+                ctx.quadraticCurveTo(140, 50, 160, 90); // Curva da folha
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+    </script>
+</head>
+<body onload="draw();">
+    <h1>Maçã com Cabinho, Folha e Efeito de Luz e Sombra</h1>
+    <canvas id="meuCanvas" width="300" height="300" style="border: 1px solid #000;"></canvas>
+</body>
+</html>
